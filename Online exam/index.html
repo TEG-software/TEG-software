@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Student Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;            background-color: #1e1e1e;
+        }        .header {
+            background-color: rgb(139, 0, 0);
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: -50px 0;  /* Negative margin to prevent box expansion */
+        }
+        .logo-text {
+            color: #fcfcfc;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }        .container {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            color: #1e2936;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }        button {
+            background-color: rgb(139, 0, 0);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: rgb(100, 0, 0);
+        }
+    </style>
+</head>
+<body>    <div class="header">
+        <div class="logo-container">
+            <img src="TFSL-2.png" alt="Cambridge Logo" class="logo">
+            <h2 class="logo-text">TEG ONLINE EXAM</h2>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Online Exam Portal</h1>
+        <form id="examForm" onsubmit="redirectToExam(event)">
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="examType">Select Exam:</label>                <select id="examType" name="examType" required>
+                    <option value="">Choose an exam...</option>
+                    <option value="L7T1">L7T1</option>
+                    <option value="L7T3">L7T3</option>
+                    <option value="L7T4">L7T4</option>
+                    <option value="L8T2">L8T2</option>
+                    <option value="L8T4">L8T4</option>
+                    <option value="L9T4">L9T4</option>
+                </select>
+            </div>
+            <button type="submit">Start Exam</button>
+        </form>
+    </div>
+
+    <script>
+        function redirectToExam(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const examType = document.getElementById('examType').value;
+              // Google Form URLs for each exam
+            const formUrls = {
+                'L7T1': 'https://forms.gle/58TyNpANxV68eVF28',
+                'L7T3': 'https://forms.gle/bHRmM6S2YQwyecix9',
+                'L7T4': 'https://forms.gle/pn2LK6oMP3LnBR6U6',
+                'L8T2': 'https://forms.gle/wLZpKkCHdvv9Jz6e6',
+                'L8T4': 'https://forms.gle/zUdduVYZ4Azzgwd69',
+                'L9T4': 'https://forms.gle/YHCShWufbQ6jDZ5z7'
+            };
+
+            // Add the user's name as a URL parameter to the Google Form
+            const redirectUrl = `${formUrls[examType]}?entry.name=${encodeURIComponent(fullName)}`;
+            
+            // Redirect to the selected exam's Google Form
+            window.location.href = redirectUrl;
+        }
+    </script>
+</body>
+</html>
